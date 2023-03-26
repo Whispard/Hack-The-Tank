@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track</title>
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <script src="https://unpkg.com/gojs"></script>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container" style="padding-left: 300px"></div>
+<div class="row mb-5" style="padding-left: 200px">
+    <div class="col-md-12">
+        <h2 class="heading-section">
+            <small>Pick your size</small>
+        </h2>
+    </div>
+    <div class="col-md-6 mb-3">
+        <button type="button" class="btn btn-primary btn-sm mr-md-3 mb-2 mb-md-0">Small Size</button>
+        <button type="button" class="btn btn-primary mr-md-3 mb-2 mb-md-0">Regular Size</button>
+        <button type="button" class="btn btn-primary btn-lg mr-md-3 mb-2 mb-md-0">Large Size</button>
+    </div>
+    <div class="col-md-6 mb-3">
+        <button type="button" class="btn btn-primary btn-sm mr-md-3 mb-2 mb-md-0">Small Size 2</button>
+        <button type="button" class="btn btn-primary mr-md-3 mb-2 mb-md-0">Regular Size 2</button>
+        <button type="button" class="btn btn-primary btn-lg mr-md-3 mb-2 mb-md-0">Large Size 2</button>
+    </div>
+</div>
+<div class="row mb-5" style="padding-left: 200px">
+    <div class="col-md-12">
+        <h2 class="heading-section">
+            <small>Pick your color</small>
+        </h2>
+    </div>
+    <div class="col-md-6 mb-3">
+        <button type="button" class="btn btn-primary mr-md-3 mb-2 mb-md-0">Primary</button>
+        <button type="button" class="btn btn-success mr-md-3 mb-2 mb-md-0">Success</button>
+        <button type="button" class="btn btn-danger mr-md-3 mb-2 mb-md-0">Danger</button>
+        <button type="button" class="btn btn-warning mr-md-3 mb-2 mb-md-0">Warning</button>
+        <button type="button" class="btn btn-info mr-md-3 mb-2 mb-md-0">Info</button>
+    </div>
+    <div class="col-md-6 mb-3">
+        <button type="button" class="btn btn-primary mr-md-3 mb-2 mb-md-0">Primary 2</button>
+        <button type="button" class="btn btn-success mr-md-3 mb-2 mb-md-0">Success 2</button>
+        <button type="button" class="btn btn-danger mr-md-3 mb-2 mb-md-0">Danger 2</button>
+        <button type="button" class="btn btn-warning mr-md-3 mb-2 mb-md-0">Warning 2</button>
+        <button type="button" class="btn btn-info mr-md-3 mb-2 mb-md-0">Info 2</button>
+    </div>
+    <div class="col-md-12 mb-3">
+        <button type="button" class="btn btn-primary mr-md-3 mb-2 mb-md-0">Print!</button>
+    </div>
+    <div id="myDiagramDiv"
+         style="background-color: white; border: 1px solid black; width: 100%; height: 500px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);">
+        <canvas tabindex="0" width="1296" height="622"
+                style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1037px; height: 498px;">
+            This text is displayed if your browser does not support the Canvas HTML element.
+        </canvas>
+        <div style="position: absolute; overflow: auto; width: 1054px; height: 498px; z-index: 1;">
+            <div style="position: absolute; width: 1px; height: 1418px;"></div>
+        </div>
+    </div>
+</div>
+<script>
+    let lastButtonClick = 0;
+    let buttons = document.querySelectorAll('button');
+    let eventQueue = [];
+
+
+    buttons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            if (event.target.innerText == "Print!") {
+                console.log(eventQueue);
+                calculate();
+                return;
+            }
+            //console.log(event.target);
+            //console.log(event.target.innerText);
+            let curr = Date.now();
+            let diff = 0;
+            if (lastButtonClick != 0) {
+                diff = curr - lastButtonClick;
+            }
+            lastButtonClick = curr;
+            eventQueue.push({
+                'time': diff,
+                'text': event.target.innerText.split(' ')[0],
+                'user': event.target.innerText.endsWith("2")? 2: 1
+            });
+        });
+    });
+
+    function calculate() {
+        user1 = eventQueue.filter(x=>x.user===1).map(x=>x.text);
+        console.log(user1);
+        user2 = eventQueue.filter(x=>x.user===2).map(x=>x.text);
+        states = [
+            'Small',
+            "Regular",
+            "Large",
+            "Primary",
+            "Success",
+             "Danger",
+             "Warning",
+             "Info"
+        ]
+        let links = {}
+        for (let i=0;i<states.length;i++) {
+            s = states[i];
+            links[s] = {}
+            // loop over each key of states
+            links[s][0] = 0;
+            links[s][1] = 0;
+        }
+
+        console.log(links);
+        user1.forEach(s => {
+            console.log(s);
+            links[s][0] = 1
+        });
+        user2.forEach(s => {
+            links[s][1] = 1
+        });
+        let nodesData = {};
+        // console.log(links);
+        for(let i=0;i<states.length;i++){
+            s = states[i];
+            // console.log(s,)
+            nodesData[s] = links[s][0] + links[s][1];
+        }
+
+
+        console.log(nodesData);
+        var diagram = new go.Diagram("myDiagramDiv");
+        diagram.model = new go.GraphLinksModel(
+            [{ key: "Hello" },   // two node data, in an Array
+                { key: "World!" }],
+            [{ from: "Hello", to: "World!"}]  // one link data, in an Array
+        );
+
+        const $ = go.GraphObject.make;
+        diagram.nodeTemplate =
+                $(go.Node, "Vertical",
+                        {
+                          locationSpot: go.Spot.Center,  // Node.location is the center of the Shape
+                          locationObjectName: "SHAPE",
+                          selectionAdorned: false,
+                          //selectionChanged: nodeSelectionChanged  // defined below
+                        },
+                        $(go.Panel, "Spot",
+                                $(go.Shape, "Circle",
+                                        {
+                                          name: "SHAPE",
+                                          fill: "lightgray",  // default value, but also data-bound
+                                          strokeWidth: 0,
+                                          //desiredSize: new go.Size(30, 30),
+                                          portId: ""  // so links will go to the shape, not the whole node
+                                        }
+                                        ,new go.Binding("desiredSize","freq",f=>new go.Size(f*4+30,f*4+30)),
+                                        new go.Binding("fill", "isSelected", (s, obj) => s ? "red" : obj.part.data.color).ofObject()),
+                                $(go.TextBlock,{stroke:"white"},
+                                        new go.Binding("text","freq" ))),
+                        $(go.TextBlock,
+                                new go.Binding("text","text"))
+                );
+
+// the Model holds only the essential information describing the diagram
+        diagram.model = new go.GraphLinksModel(
+            states.map(s=>({key:s,text: s,freq:nodesData[s], color: "blue"})),
+            [ // a JavaScript Array of JavaScript objects, one per link
+                { from: "Small", to: "Regular" },
+                { from: "Regular", to: "Large" },
+                { from: "Primary", to: "Success" },
+                { from: "Success", to: "Danger" },
+                { from: "Danger", to: "Warning" },
+                {from:"Warning",to:"Info"}
+            ]);
+
+// enable Ctrl-Z to undo and Ctrl-Y to redo
+        diagram.undoManager.isEnabled = true;
+
+        console.log("d");
+
+
+    }
+
+</script>
+
+</body>
+</html>

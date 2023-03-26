@@ -1,0 +1,440 @@
+<html>
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/gojs"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+<h1>Express</h1>
+<p>Welcome to Express</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            One of three columns
+            <div id="myDiagramDiv"
+                 style="background-color: white; border: 1px solid black; width: 100%; height: 500px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);">
+                <canvas tabindex="0" width="1296" height="622"
+                        style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1037px; height: 498px;">
+                    This text is displayed if your browser does not support the Canvas HTML element.
+                </canvas>
+                <div style="position: absolute; overflow: auto; width: 1054px; height: 498px; z-index: 1;">
+                    <div style="position: absolute; width: 1px; height: 1418px;"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+            One of three columns
+            <div class="card mb-3">
+                <!--          <div class="row g-0">-->
+                <!--            <div class="col-sm-3">-->
+                <!--              <img style="max-height: 100px;max-width: 100px" src="https://miro.medium.com/fit/c/338/226/1*UkfcpiTE0HEKp5B7S3_zuA.jpeg" class="img-fluid rounded-start" alt="...">-->
+                <!--            </div>-->
+                <!--            <div class="col-sm-9">-->
+                <!--              <div class="card-body">-->
+                <!--                <div class="card-title">-->
+                <!--                  <i class="fw-light"><b>Whispard</b></i>-->
+                <!--                  <i class="bi bi-whatsapp"></i>-->
+                <!--                  <i class="bi bi-envelope"></i>-->
+                <!--                  <i class="bi bi-bell"></i>-->
+                <!--                </div>-->
+                <!--                <p class="card-text text-muted">-->
+                <!--                  6 Nov-->
+                <!--                  <span class="blog-tag">Self</span>-->
+
+                <!--                </p>-->
+                <!--              </div>-->
+                <!--            </div>-->
+
+                <!-- News & Updates Traffic -->
+                <div class="card">
+
+                    <div class="card-body pb-0">
+                        <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+
+                        <div class="news" id="user-sidebar">
+                            <div class="post-item clearfix">
+                                <img style="max-height: 100px;max-width: 100px"
+                                     src="photos/2.png" alt="">
+                                <h4><a href="#">Whispard</a></h4>
+                                <i class="bi bi-whatsapp"></i>
+                                <i class="bi bi-envelope"></i>
+                                <i class="bi bi-bell"></i>
+                            </div>
+                        </div>
+
+
+                    </div><!-- End sidebar recent posts-->
+
+                </div>
+                <!--          </div>&lt;!&ndash; End News & Updates &ndash;&gt;-->
+
+
+                <!--        </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--  </div>-->
+
+                <!--  <div id="myDiagramDiv" style="width:100%; height:100%;"></div>-->
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>App. Date</th>
+                    <th>12 CGPA</th>
+                    <th>MATCH</th>
+                    <th>LOCATION</th>
+                </tr>
+                </thead>
+                <tbody id="inject-user-data">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+            <!--<div id="myDiagramDiv"></div>-->
+
+            <div id="myPaletteDiv"></div>
+
+            <!--  <div id="tree-config" style="display:none">-->
+            <!--  <b>Tree Style</b><br>-->
+            <!--  <select name="style" id="style" onchange="layout()">-->
+            <!--    <option value="Layered" selected="selected">Layered</option>-->
+            <!--    <option value="Alternating">Alternating</option>-->
+            <!--    <option value="LastParents">LastParents</option>-->
+            <!--    <option value="RootOnly">RootOnly</option>-->
+            <!--  </select>-->
+            <!--  <br>-->
+            <!--  <b>Layer Style</b><br>-->
+            <!--  <select name="layerStyle" id="layerStyle" onchange="layout()">-->
+            <!--    <option value="Individual" selected="selected">Individual</option>-->
+            <!--    <option value="Siblings">Siblings</option>-->
+            <!--    <option value="Uniform">Uniform</option>-->
+            <!--  </select>-->
+            <!--  <br>-->
+            <!--  <br>-->
+            <!--  <b>New Tree</b><br>-->
+            <!--  MinNodes: <input type="number" width="2" id="minNodes" value="20"><br>-->
+            <!--  MaxNodes: <input type="number" width="2" id="maxNodes" value="100"><br>-->
+            <!--  MinChildren: <input type="number" width="2" id="minChil" value="1"><br>-->
+            <!--  MaxChildren: <input type="number" width="2" id="maxChil" value="3"><br>-->
+            <!--  Random Sizes: <input type="checkbox" id="randomSizes"><br>-->
+            <!--  <button type="button" onclick="rebuildGraph()">Generate Tree</button>-->
+            <!--  </span>-->
+            <!--  <span style="display: inline-block; vertical-align: top; padding: 5px">-->
+            <!--      <b>Default Properties</b><br>-->
+            <!--      Angle:-->
+            <!--        <input type="radio" name="angle" onclick="layout()" value="0" checked="checked">Right-->
+            <!--        <input type="radio" name="angle" onclick="layout()" value="90">Down-->
+            <!--        <input type="radio" name="angle" onclick="layout()" value="180">Left-->
+            <!--        <input type="radio" name="angle" onclick="layout()" value="270">Up<br>-->
+            <!--      Alignment:-->
+            <!--        <select name="align" id="align" onchange="layout()">-->
+            <!--          <option value="CenterChildren" selected="selected">CenterChildren</option>-->
+            <!--          <option value="CenterSubtrees">CenterSubtrees</option>-->
+            <!--          <option value="Start">Start</option>-->
+            <!--          <option value="End">End</option>-->
+            <!--          <option value="Bus">Bus</option>-->
+            <!--          <option value="BusBranching">BusBranching</option>-->
+            <!--          <option value="TopLeftBus">TopLeftBus</option>-->
+            <!--          <option value="BottomRightBus">BottomRightBus</option>-->
+            <!--        </select>-->
+            <!--        <br>-->
+            <!--      NodeSpacing: <input type="number" size="2" id="nodeSpacing" value="20" onchange="layout()"> (negative causes overlaps)<br>-->
+            <!--      NodeIndent: <input type="number" size="2" id="nodeIndent" value="0" onchange="layout()"> (when Start or End; &gt;= 0)<br>-->
+            <!--      NodeIndentPastParent: <input type="number" size="2" id="nodeIndentPastParent" value="0" onchange="layout()"> (fraction; 0-1)<br>-->
+            <!--      LayerSpacing: <input type="number" size="2" id="layerSpacing" value="50" onchange="layout()"> (negative causes overlaps)<br>-->
+            <!--      LayerSpacingParentOverlap: <input type="number" size="2" id="layerSpacingParentOverlap" value="0" onchange="layout()"> (fraction; 0-1)<br>-->
+            <!--      Sorting:-->
+            <!--        <select name="sorting" id="sorting" onchange="layout()">-->
+            <!--          <option value="Forwards" selected="selected">Forwards</option>-->
+            <!--          <option value="Reverse">Reverse</option>-->
+            <!--          <option value="Ascending">Ascending</option>-->
+            <!--          <option value="Descending">Descending</option>-->
+            <!--        </select>-->
+            <!--        <br>-->
+            <!--      Compaction:-->
+            <!--        <input type="radio" name="compaction" onclick="layout()" value="Block" checked="checked"> Block-->
+            <!--        <input type="radio" name="compaction" onclick="layout()" value="None"> None<br>-->
+            <!--      BreadthLimit: <input type="number" size="2" id="breadthLimit" value="0" onchange="layout()"> (0 means no limit)<br>-->
+            <!--      RowSpacing: <input type="number" size="2" id="rowSpacing" value="25" onchange="layout()"> (negative causes overlaps)<br>-->
+            <!--      RowIndent: <input type="number" size="2" id="rowIndent" value="10" onchange="layout()"> (&gt;= 0)<br>-->
+            <!--      SetsPortSpot: <input type="checkbox" id="setsPortSpot" checked="checked" onclick="layout()">-->
+            <!--      SetsChildPortSpot: <input type="checkbox" id="setsChildPortSpot" checked="checked" onclick="layout()"><br>-->
+            <!--    </span>-->
+            <!--  <span style="display: inline-block; vertical-align: top; padding: 5px">-->
+            <!--      <b>Alternates</b>-->
+            <!--      (only when TreeStyle is not Layered)-->
+            <!--      <br>-->
+            <!--      Angle:-->
+            <!--        <input type="radio" name="altAngle" onclick="layout()" value="0" checked="checked">Right-->
+            <!--        <input type="radio" name="altAngle" onclick="layout()" value="90">Down-->
+            <!--        <input type="radio" name="altAngle" onclick="layout()" value="180">Left-->
+            <!--        <input type="radio" name="altAngle" onclick="layout()" value="270">Up<br>-->
+            <!--      Alignment:-->
+            <!--        <select name="altAlign" id="altAlign" onchange="layout()">-->
+            <!--          <option value="CenterChildren" selected="selected">CenterChildren</option>-->
+            <!--          <option value="CenterSubtrees">CenterSubtrees</option>-->
+            <!--          <option value="Start">Start</option>-->
+            <!--          <option value="End">End</option>-->
+            <!--          <option value="Bus">Bus</option>-->
+            <!--          <option value="BusBranching">BusBranching</option>-->
+            <!--          <option value="TopLeftBus">TopLeftBus</option>-->
+            <!--          <option value="BottomRightBus">BottomRightBus</option>-->
+            <!--        </select>-->
+            <!--        <br>-->
+            <!--      NodeSpacing: <input type="number" size="2" id="altNodeSpacing" value="20" onchange="layout()"> (negative causes overlaps)<br>-->
+            <!--      NodeIndent: <input type="number" size="2" id="altNodeIndent" value="0" onchange="layout()"> (when Start or End; &gt;= 0)<br>-->
+            <!--      NodeIndentPastParent: <input type="number" size="2" id="altNodeIndentPastParent" value="0" onchange="layout()"> (fraction; 0-1)<br>-->
+            <!--      LayerSpacing: <input type="number" size="2" id="altLayerSpacing" value="50" onchange="layout()"> (negative causes overlaps)<br>-->
+            <!--      LayerSpacingParentOverlap: <input type="number" size="2" id="altLayerSpacingParentOverlap" value="0" onchange="layout()"> (fraction; 0-1)<br>-->
+            <!--      Sorting:-->
+            <!--        <select name="altSorting" id="altSorting" onchange="layout()">-->
+            <!--          <option value="Forwards" selected="selected">Forwards</option>-->
+            <!--          <option value="Reverse">Reverse</option>-->
+            <!--          <option value="Ascending">Ascending</option>-->
+            <!--          <option value="Descending">Descending</option>-->
+            <!--        </select>-->
+            <!--        <br>-->
+            <!--      Compaction:-->
+            <!--        <input type="radio" name="altCompaction" onclick="layout()" value="Block" checked="checked"> Block-->
+            <!--        <input type="radio" name="altCompaction" onclick="layout()" value="None"> None<br>-->
+            <!--      BreadthLimit: <input type="number" size="2" id="altBreadthLimit" value="0" onchange="layout()"> (0 means no limit)<br>-->
+            <!--      RowSpacing: <input type="number" size="2" id="altRowSpacing" value="25" onchange="layout()"> (negative causes overlaps)<br>-->
+            <!--      RowIndent: <input type="number" size="2" id="altRowIndent" value="10" onchange="layout()"> (&gt;= 0)<br>-->
+            <!--      SetsPortSpot: <input type="checkbox" id="altSetsPortSpot" checked="checked" onclick="layout()">-->
+            <!--      SetsChildPortSpot: <input type="checkbox" id="altSetsChildPortSpot" checked="checked" onclick="layout()"><br>-->
+            <!--  </span>-->
+            <!--  </div>-->
+            <!--  <script>-->
+            <!--    function generateGraph() {-->
+            <!--      var names = [-->
+            <!--        "Joshua", "Kathryn", "Robert", "Jason", "Scott", "Betsy", "John",-->
+            <!--        "Walter", "Gabriel", "Simon", "Emily", "Tina", "Elena", "Samuel",-->
+            <!--        "Jacob", "Michael", "Juliana", "Natalie", "Grace", "Ashley", "Dylan"-->
+            <!--      ];-->
+
+            <!--      var nodeDataArray = [];-->
+            <!--      for (var i = 0; i < names.length; i++) {-->
+            <!--        nodeDataArray.push({ key: i, text: names[i], color: go.Brush.randomColor(128, 240) });-->
+            <!--      }-->
+
+            <!--      var linkDataArray = [];-->
+            <!--      var num = nodeDataArray.length;-->
+            <!--      for (var i = 0; i < num * 2; i++) {-->
+            <!--        var a = Math.floor(i/2);-->
+            <!--        var b = Math.floor(Math.random() * num / 4) + 1;-->
+            <!--        linkDataArray.push({ from: a, to: (a + b) % num, color: go.Brush.randomColor(0, 127) });-->
+            <!--      }-->
+            <!--      console.log(nodeDataArray);-->
+            <!--      console.log(linkDataArray);-->
+
+            <!--      myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);-->
+            <!--    }-->
+
+
+            <!--  </script>-->
+
+            <!--  <script src="javascripts/embed-go.js"></script>-->
+
+            <!--<script src="https://unpkg.com/gojs"></script>-->
+
+
+            <script>
+                //  NOT FOR COMMENTING!
+                // const myDiagram =
+                //   new go.Diagram("myDiagramDiv",  // create a Diagram for the HTML Div element
+                //     { "undoManager.isEnabled": true });  // enable undo & redo
+
+                // define a simple Node template
+                // myDiagram.nodeTemplate =
+                //   new go.Node("Auto")  // the Shape will automatically surround the TextBlock
+                //     // add a Shape and a TextBlock to this "Auto" Panel
+                //     .add(new go.Shape("RoundedRectangle",
+                //                       { strokeWidth: 0, fill: "white" })  // no border; default fill is white
+                //         .bind("fill", "color"))  // Shape.fill is bound to Node.data.color
+                //     .add(new go.TextBlock({ margin: 8, stroke: "#333" })  // some room around the text
+                //         .bind("text", "key"));  // TextBlock.text is bound to Node.data.key
+
+                // but use the default Link template, by not setting Diagram.linkTemplate
+
+                // create the model data that will be represented by Nodes and Links
+
+                // const $ = go.GraphObject.make;
+                //
+                // myDiagram.nodeTemplate =
+                //         $(go.Node, "Horizontal",
+                //                 {
+                //                   locationSpot: go.Spot.Center,  // Node.location is the center of the Shape
+                //                   locationObjectName: "SHAPE",
+                //                   selectionAdorned: false,
+                //                   //selectionChanged: nodeSelectionChanged  // defined below
+                //                 },
+                //                 $(go.Panel, "Spot",
+                //                         $(go.Shape, "Circle",
+                //                                 {
+                //                                   name: "SHAPE",
+                //                                   fill: "lightgray",  // default value, but also data-bound
+                //                                   strokeWidth: 0,
+                //                                   desiredSize: new go.Size(30, 30),
+                //                                   portId: ""  // so links will go to the shape, not the whole node
+                //                                 },
+                //                                 new go.Binding("fill", "isSelected", (s, obj) => s ? "red" : obj.part.data.color).ofObject()),
+                //                         $(go.TextBlock,
+                //                                 new go.Binding("text","freq" ))),
+                //                 $(go.TextBlock,
+                //                         new go.Binding("text","text"))
+                //         );
+                //
+                //
+                // myDiagram.model = new go.GraphLinksModel(
+                //         [
+                //           { key: 0, text: 'viewed', freq: 8 ,color: go.Brush.randomColor(0, 127) },
+                //           { key: 1, text: 'bookmarked', freq: 4,color: go.Brush.randomColor(0, 127) },
+                //           { key: 2, text: 'Applied', freq: 3,color: go.Brush.randomColor(0, 127) }
+                //         ]
+                //
+                //         ,
+                //         [
+                //           {from: 0,to:1},
+                //           {from:1,to:2},
+                //           {from:0,to:2}
+                //         ]
+                // );
+
+            </script>
+
+
+            <script src="javascripts/embed-go3.js"></script>
+<script>
+    users = [
+        [A,B,C],
+        [A],
+        [A,C,E],
+        [A,B,E],
+        [A,C,D],
+        [A,B,E],
+        [A,C,D],
+        [A,B,C],
+        [A,C,D],
+        [A,B,C],
+        [A,D,E],
+        [A,C,E],
+        [A,B],
+        [A,B]
+
+    ]
+    function fillUserData(){
+        userData = [
+            {
+                "email": "john@example.com",
+                "application_date": "2022-01-15",
+                "more_than_12_cgpa": true,
+                "match": "Full-time",
+                "location": "New York"
+            },
+            {
+                "email": "jane@example.com",
+                "application_date": "2022-02-10",
+                "more_than_12_cgpa": false,
+                "match": "Part-time",
+                "location": "San Francisco"
+            },
+            {
+                "email": "peter@example.com",
+                "application_date": "2022-03-03",
+                "more_than_12_cgpa": true,
+                "match": "Internship",
+                "location": "Chicago"
+            },
+            {
+                "email": "mary@example.com",
+                "application_date": "2022-04-20",
+                "more_than_12_cgpa": true,
+                "match": "Full-time",
+                "location": "Los Angeles"
+            },
+            {
+                "email": "alex@example.com",
+                "application_date": "2022-05-12",
+                "more_than_12_cgpa": true,
+                "match": "Full-time",
+                "location": "Boston"
+            },
+            {
+                "email": "sara@example.com",
+                "application_date": "2022-06-08",
+                "more_than_12_cgpa": false,
+                "match": "Part-time",
+                "location": "Seattle"
+            },
+            {
+                "email": "david@example.com",
+                "application_date": "2022-07-01",
+                "more_than_12_cgpa": true,
+                "match": "Internship",
+                "location": "Miami"
+            },
+            {
+                "email": "amy@example.com",
+                "application_date": "2022-08-15",
+                "more_than_12_cgpa": true,
+                "match": "Full-time",
+                "location": "Houston"
+            }
+
+        ]
+
+        userNames = [  "Emily Johnson",  "Michael Brown",  "Avery Davis",  "Nathan Rodriguez",  "Olivia Lee",  "Ethan Martinez",  "Sophia Taylor",  "William Anderson",  "Isabella Hernandez",  "James Wilson",  "Madison Garcia",  "Alexander Thomas",  "Charlotte Clark",  "Benjamin Baker",  "Elizabeth Wright"]
+
+
+
+        const target = document.getElementById('inject-user-data');
+
+
+        for(let i = 0; i < userData.length; i++){
+            const cUser = userData[i];
+        const inject = `<tr>
+                    <td>${userNames[i]}</td>
+                    <td>${cUser["email"]}</td>
+                    <td>${cUser["application_date"]}</td>
+                    <td>${cUser["more_than_12_cgpa"]}</td>
+                    <td>${cUser["match"]}</td>
+                    <td>${cUser["location"]}</td>
+                </tr>`
+
+
+        target.innerHTML += inject;
+             }
+    }
+
+    fillUserData();
+
+
+</script>
+
+</body>
+
+</html>
