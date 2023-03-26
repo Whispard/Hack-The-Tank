@@ -7,7 +7,7 @@ track.html has code to track user data and show demo analysis
 
 ## Screenshots
 
-![alt text](https://github.com/Whispard/Hack-The-Tank/main/screenshots/s1.png?raw=true)
+![alt text](https://github.com/Whispard/Hack-The-Tank/raw/main/screenshots/s1.png)
 
 
 ![alt text](https://github.com/Whispard/Hack-The-Tank/raw/main/screenshots/s2.png?raw=true)
